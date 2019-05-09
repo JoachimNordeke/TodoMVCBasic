@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Basic(HTML, CSS, JavaScript) • TodoMVC</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <header>
+        <h1>todos</h1>
+    </header>
+
+    <main>
+        <div class="todo-entry">
+            <input type="checkbox">
+            <input type="text" placeholder="What needs to be done?">
+        </div>
+        <div class="todo-list">
+            <ul>
+                <li>
+                    <input type="checkbox">
+                    <input type="textbox" value="Todo1" disabled>
+                    <button>X</button>
+                </li>
+                <li>
+                    <input type="checkbox">
+                    <input type="textbox" value="Todo1" disabled>
+                    <button>X</button>
+                </li>
+            </ul>
+        </div>
+        <div class="todo-action">
+            <ul>
+                <li>1 item left</li>
+                <li>
+                    <ul>
+                        <li>
+                            <input type="radio" id="All" name="Select">
+                            <label for="All">All</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="Active" name="Select">
+                            <label for="Active">Active</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="Completed" name="Select">
+                            <label for="Completed">Completed</label>
+                        </li>
+                    </ul>
+                </li>
+                <li><button>Clear completed</button></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p><small>Double-click to edit a todo</small></p>
+        <p><small>Originally written by <a href="https://github.com/addyosmani" target="blank">Addy Osmani</a></small>
+        </p>
+        <p><small>Remake by Ghassan & Joachim</small></p>
+        <p><small>Part of <a href="http://todomvc.com/" target="blank">TodoMVC</a></small></p>
+    </footer>
 </body>
+
 </html>

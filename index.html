@@ -16,21 +16,20 @@
     </header>
 
     <main>
+        <form>
         <div class="todo-entry">
-            <input type="checkbox">
+            <input type="checkbox" id ="checkbox">
+            <label for="checkbox">❯</label>
             <input type="text" placeholder="What needs to be done?">
+            <button type="submit" hidden>
         </div>
+    </form>
         <div class="todo-list">
             <ul>
-                <li>
+                <li id="template">
                     <input type="checkbox">
-                    <input type="text" value="Todo1" disabled>
-                    <button>X</button>
-                </li>
-                <li>
-                    <input type="checkbox">
-                    <input type="text" value="Todo2" disabled>
-                    <button>X</button>
+                    <input type="text" value="todo1" disabled>
+                    <button>×</button>
                 </li>
             </ul>
         </div>

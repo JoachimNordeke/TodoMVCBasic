@@ -58,22 +58,26 @@ input[type="radio"] {
     justify-content: space-between;
 }
 
+.todo-action ul ul li {
+    margin-left: 0.6em;
+   
+}
+
 .todo-action a {
     cursor: pointer;
     font-size: 1em;
-    padding: 0.3em 0.6em;
-    margin: 0.5em;
+    padding: 0.2em 0.6em;
     border-radius: 3px;
     color: inherit;
     text-decoration: none;
 }
 
 .todo-action a:hover {
-    outline: solid thin rgba(175, 47, 47, 0.1);
+    border: solid thin rgba(175, 47, 47, 0.1);
 }
 
 .todo-action a:focus {
-    outline: solid thin rgba(175, 47, 47, 0.2);
+    border: solid thin rgba(175, 47, 47, 0.2);
 }
 
 .todo-action button {

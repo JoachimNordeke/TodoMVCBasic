@@ -19,6 +19,7 @@
             removeButton.addEventListener("click", () => {
                 list.removeChild(newLi);
             });
+            
         }
         let textbox = document.querySelector(".todo-entry input[type='text']");
         textbox.value = "";

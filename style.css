@@ -162,10 +162,6 @@ footer a:hover {
     padding-right: .5em;
 }
 
-.todo-list li:hover button {
-    visibility: visible;
-}
-
 .todo-list input[type="checkbox"] {
     flex: 1;
 }
@@ -189,6 +185,10 @@ footer a:hover {
     -moz-transition: color 0.2s ease-in-out;
     -o-transition: color 0.2s ease-in-out;
     -webkit-transition: color 0.2s ease-in-out;
+}
+
+.todo-list li:hover button {
+    visibility: visible;
 }
 
 .todo-list button:hover {

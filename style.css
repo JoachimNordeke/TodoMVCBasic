@@ -67,15 +67,22 @@ input[type="radio"] {
     font-size: 1em;
     padding: 0.2em 0.6em;
     border-radius: 3px;
-    color: inherit;
+    color: #878787;
     text-decoration: none;
+    border: 1px solid transparent; /* without this the border will keep resizing and moving the buttons */
 }
 
 .todo-action a:hover {
     border: solid thin rgba(175, 47, 47, 0.1);
 }
 
-.todo-action a:focus {
+/* used to switch style of the links by JS */
+a.selected-link {
+    border: solid thin rgba(175, 47, 47, 0.2);
+}
+
+/* to override the previous hover rule */
+a.selected-link:hover {
     border: solid thin rgba(175, 47, 47, 0.2);
 }
 

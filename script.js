@@ -23,5 +23,23 @@
         let textbox = document.querySelector(".todo-entry input[type='text']");
         textbox.value = "";
     })
+
+    /* The code add click event for each link */
+    let filterLinks = document.querySelectorAll(".todo-action a");
+    for (const link of filterLinks) {
+        link.addEventListener("click", () =>
+        {
+            /* every time a new link is clicked, the code make sure than no other links get the style*/
+            for (const link2 of filterLinks) {
+                if (link === link2){
+                    link.className = "selected-link";
+                }
+                else {
+                    link2.className = "";
+                }
+            }
+        })
+    }
+  
 })()
 

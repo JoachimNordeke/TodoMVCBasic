@@ -16,8 +16,8 @@ body, footer {
     align-items: center;
 }
 
-li {
-    display: block;
+ul {
+    list-style-type: none;
 }
 
 header {
@@ -59,8 +59,7 @@ input[type="radio"] {
 }
 
 .todo-action ul ul li {
-    margin-left: 0.6em;
-   
+    margin-left: .6em;
 }
 
 .todo-action a {

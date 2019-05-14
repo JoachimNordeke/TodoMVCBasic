@@ -18,8 +18,8 @@
     <main>
         <form>
         <div class="todo-entry">
-            <input type="checkbox" id ="checkbox">
-            <label for="checkbox">❯</label>
+            <input type="checkbox" id="checkAll">
+            <label for="checkAll">❯</label>
             <input type="text" placeholder="What needs to be done?">
             <button type="submit" hidden>
         </div>
@@ -27,8 +27,11 @@
         <div class="todo-list">
             <ul>
                 <li id="template">
-                    <input type="checkbox">
-                    <input type="text" value="todo1" disabled>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="todo-check">
+                        <span class="check"></span>
+                    </label>                    
+                    <input type="text" disabled>
                     <button>×</button>
                 </li>
             </ul>

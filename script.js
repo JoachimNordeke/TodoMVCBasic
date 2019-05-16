@@ -1,32 +1,64 @@
 (function () {
 
     let selectAll = document.querySelector("#checkAll");
+
     selectAll.addEventListener("change", () => {
-        let todoCheckboxes = Array.from(document.querySelectorAll(".todo-list li input[type='checkbox']"));
-        if (selectAll.checked)
-        {
-            for (let box of todoCheckboxes) {
-                box.checked = true;
-                
+
+        let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
+        if (selectAll.checked) {
+            for (let item of items) {
+                item.querySelector("input[type='checkbox'").checked = true;
+                item.querySelector("span").innerText = "✓";
+                let todoText = item.querySelector("input[type='text']");
+                todoText.style.color = "#D9D9D9";
+                todoText.style.textDecoration = "line-through";
             }
         }
-        else if (selectAll.checked == false)
-        {
-            for (let box of todoCheckboxes) {
-                box.checked = false;
+        else if (selectAll.checked == false) {
+            for (let item of items) {
+                item.querySelector("input[type='checkbox'").checked = false;
+                item.querySelector("span").innerText = "";
+                let todoText = item.querySelector("input[type='text']");
+                todoText.style.color = "#545454";
+                todoText.style.textDecoration = "inherit";
             }
+        }
+
+        /* Get all checboxex that shows in the UI */
+        let checkboxes = document.querySelectorAll(".todo-list li[id='real'] input[type='checkbox'");
+        let itemsLeft = document.querySelector("#left"); /* items left label text */
+        let checked = 0;
+        /* get how many checked */
+        for (const box of checkboxes) {
+            if (box.checked) {
+                checked++;
+            }
+        }
+
+        if (checked === checkboxes.length) {
+            itemsLeft.textContent = "0 items left";
+        }
+        else if(checkboxes.length - checked === 1){
+            itemsLeft.textContent = "1 item left";
+
+        }
+        else {
+            itemsLeft.textContent = (checkboxes.length - checked) + " items left";
         }
     });
 
     let form = document.querySelector("main form");
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+
         let text = document.querySelector(".todo-entry input[type='text']").value;
         if (text !== "") {
+            let todoEntryLabel = document.querySelector(".todo-entry label").style.visibility = "visible";
+            let todoActionHub = document.querySelector(".todo-action").style.display = "block";
             const li = document.querySelector("#template");
             const newLi = li.cloneNode(true);
             newLi.style.display = "flex";
-            newLi.id = "";
+            newLi.id = "real";
             let newText = newLi.querySelector("li input[type='text']");
             newText.value = text;
             const list = document.querySelector(".todo-list ul");
@@ -40,23 +72,83 @@
                 removeButton.style.outline = "none";
             });
 
+            /* show how many items left */
             let checkbox = newLi.querySelector(".todo-check");
             let span = newLi.querySelector("span");
+            let todoText = newLi.querySelector("input[type='text']");
 
+            let itemsLeft = document.querySelector("#left");
+            let checkboxes = document.querySelectorAll(".todo-list li[id='real'] input[type='checkbox'");
+            let checked = 0;           
+            for (const box of checkboxes) {
+                if (box.checked) {
+                    checked++;
+                }
+            }
+            if (checked === checkboxes.length) {
+                itemsLeft.textContent = "0 items left";
+            }
+            else if(checkboxes.length - checked === 1){
+                itemsLeft.textContent = "1 item left";
+    
+            }
+            else {
+                itemsLeft.textContent = (checkboxes.length - checked) + " items left";
+            }
+
+            /* add event to the checkboxes created with the new Li*/
             checkbox.addEventListener("change", () => {
-                
-                let todoText = newLi.querySelector("input[type='text']");
+                let checkboxes = document.querySelectorAll(".todo-list li[id='real'] input[type='checkbox'");
+                checkbox.parentNode.className = "checkboxchecked-label";
+                span.innerText = "✓";
+                todoText.style.color = "#D9D9D9";
+                todoText.style.textDecoration = "line-through";
 
                 if (checkbox.checked) {
+                    let checked = 0;
+                    for (const box of checkboxes) {
+                        if (box.checked) {
+                            checked++;
+                        }
+                    }
 
-                    checkbox.parentNode.className = "checkboxchecked-label";
-                    span.innerText = "✓";
-                    todoText.style.color = "#D9D9D9";
-                    todoText.style.textDecoration = "line-through";
-                                        
+                    if (checked === checkboxes.length) {
+                        selectAll.checked = true;
+                        itemsLeft.innerText = "0 items left";
+                    }
+                    else if(checkboxes.length - checked === 1){
+                        itemsLeft.textContent = "1 item left";
+                        selectAll.checked = false;                        
+                    }
+                    else {
+                        selectAll.checked = false;
+                        itemsLeft.innerText = (checkboxes.length - checked) + " items left";
+
+                    }
+
                 }
-                else {
-                    
+                else if (!checkbox.checked) {
+
+                    let checked = 0;
+                    for (const box of checkboxes) {
+                        if (box.checked) {
+                            checked++;
+                        }
+                    }
+
+                    if (checked === checkboxes.length) {
+                        selectAll.checked = true;
+                        itemsLeft.innerText = "0 items left";
+                    }
+                    else if(checkboxes.length - checked === 1){
+                        itemsLeft.textContent = "1 item left";
+                        selectAll.checked = false;                        
+                    }
+                    else {
+                        selectAll.checked = false;
+                        itemsLeft.innerText = (checkboxes.length - checked) + " items left";
+                    }
+
                     checkbox.parentNode.className = "checkbox-label";
                     span.innerText = "";
                     todoText.style.color = "#545454";
@@ -64,6 +156,8 @@
                 }
             })
         }
+
+        /* clears the entry area after submiting */
         let textbox = document.querySelector(".todo-entry input[type='text']");
         textbox.value = "";
     })

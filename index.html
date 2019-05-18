@@ -17,21 +17,21 @@
 
     <main>
         <form>
-        <div class="todo-entry">
-            <input type="checkbox" id="checkAll">
-            <label for="checkAll">❯</label>
-            <input type="text" placeholder="What needs to be done?">
-            <button type="submit" hidden>
-        </div>
-    </form>
+            <div class="todo-entry">
+                <input type="checkbox" id="checkAll">
+                <label for="checkAll">❯</label>
+                <input type="text" placeholder="What needs to be done?">
+            </div>
+        </form>
         <div class="todo-list">
             <ul>
                 <li id="template">
                     <label class="checkbox-label">
                         <input type="checkbox" class="todo-check">
                         <span class="check"></span>
-                    </label>                    
-                    <input type="text" disabled>
+                    </label>
+                    <label class="todo-text" id="todo-text"></label>
+                    <input type="text">
                     <button>×</button>
                 </li>
             </ul>
@@ -42,13 +42,13 @@
                 <li>
                     <ul>
                         <li>
-                            <a href="#/all">All</a>
+                            <a id="all" href="#/all">All</a>
                         </li>
                         <li>
-                            <a href="#/active">Active</a>
+                            <a id="active" href="#/active">Active</a>
                         </li>
                         <li>
-                            <a href="#/completed">Completed</a>
+                            <a id="completed" href="#/completed">Completed</a>
                         </li>
                     </ul>
                 </li>

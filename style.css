@@ -272,19 +272,28 @@ footer a:hover {
     main {
         font-size: 14px;
         padding: 1em;
-        width: 85vw;
+        width: 90vw;
         margin: 0 auto;
     }
     .todo-action ul {
         display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .todo-action ul ul {
+        display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-content: center;
+        align-items: center;
     }
     .todo-action ul li {
         padding: 1em;
         text-align: center;
-        font-size: 1.2em;
+        font-size: 1.1em;
         
     }
     .todo-entry input[type="text"] {

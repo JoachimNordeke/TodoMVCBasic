@@ -144,6 +144,7 @@ footer a:hover {
     border: none;
     flex: 10;
     background-color: "#fefefe";
+    
 }
 
 .todo-entry input[type="text"]:focus-within {
@@ -169,7 +170,9 @@ footer a:hover {
     padding: .7em .7em;
     border: none;
     flex: 9;
+    
 }
+
 
 .todo-list button {
     visibility: hidden;
@@ -225,4 +228,6 @@ footer a:hover {
     font-size: 1.3em;
     margin: 0 auto;
 }
+
+
 

@@ -83,7 +83,8 @@
                         let checboxLable = newLi.querySelector(".checkbox-label");
                         checboxLable.style.visibility = "visible";
                         todoText.textContent = input.value;
-                    }});
+                    }
+                });
             });
 
 
@@ -174,24 +175,6 @@
         textbox.value = "";
     })
 
-    /* The code add click event for each link */
-    let filterLinks = document.querySelectorAll(".todo-action a");
-    for (const link of filterLinks) {
-        link.addEventListener("click", () => {
-            /* every time a new link is clicked, the code make sure than no other links get the style*/
-            for (const link2 of filterLinks) {
-                if (link === link2) {
-                    link.className = "selected-link";
-                }
-                else {
-                    link2.className = "";
-                }
-            }
-        })
-    }
-
-
-
     function ShowItemsLeft() {
         /* Get all checboxex that shows in the UI */
         let checkboxes = document.querySelectorAll(".todo-list li[id='real'] input[type='checkbox']");
@@ -216,61 +199,36 @@
         }
     }
 
-
     const allAction = document.querySelector("#all");
     allAction.addEventListener("click", () => {
-        let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
-        items.forEach(todo => {
-            todo.style.display = "flex";
-
-        });
-
         selectoinMode = "all";
+        styleFilterLinks(selectoinMode);
+        ToggelDisplay();
     });
 
     const activeAction = document.querySelector("#active");
     activeAction.addEventListener("click", () => {
-        let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
-        items.forEach(todo => {
-            let checkbox = todo.querySelector("input[type='checkbox']");
-
-            if (!checkbox.checked) {
-                todo.style.display = "flex";
-            }
-            else {
-                todo.style.display = "none";
-            }
-        });
-
         selectoinMode = "active";
+        styleFilterLinks(selectoinMode);
+        ToggelDisplay();
     });
 
     const completedAction = document.querySelector("#completed");
     completedAction.addEventListener("click", () => {
-        let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
-        items.forEach(todo => {
-            let checkbox = todo.querySelector("input[type='checkbox']");
-
-            if (checkbox.checked) {
-                todo.style.display = "flex";
-            }
-            else {
-                todo.style.display = "none";
-            }
-        });
-
         selectoinMode = "completed";
+        styleFilterLinks(selectoinMode);
+        ToggelDisplay();
 
     });
 
-    let completedButton = document.querySelector(".todo-action button");
+    let clearCompletedButton = document.querySelector(".todo-action button");
 
-    completedButton.addEventListener("mousedown", () => {
+    clearCompletedButton.addEventListener("mousedown", () => {
         completedButton.style.outline = "none";
 
     });
 
-    completedButton.addEventListener("click", () => {
+    clearCompletedButton.addEventListener("click", () => {
         let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
         items.forEach(item => {
             const checkbox = item.querySelector("input[type='checkbox']");
@@ -339,7 +297,52 @@
                 }
             });
         }
+        else if (selectoinMode === "all") {
+            let items = Array.from(document.querySelectorAll(".todo-list li[id='real']"));
+            items.forEach(todo => {
+                todo.style.display = "flex";
+
+            });
+        }
     }
+
+    function DisplayByHash() {
+
+        if (location.hash === "#/completed") {
+            selectoinMode = "completed";
+            styleFilterLinks(selectoinMode);
+            ToggelDisplay();
+        }
+        else if (location.hash === "#/active") {
+            selectoinMode = "active";
+            styleFilterLinks(selectoinMode);
+            ToggelDisplay();
+        }
+        else if (location.hash === "#/all" || location.hash === "" ) {
+            selectoinMode = "all";
+            styleFilterLinks(selectoinMode);
+            ToggelDisplay();
+        }
+    }
+
+    function styleFilterLinks(selection) {
+        let filterLinks = document.querySelectorAll(".todo-action a");
+        for (const link of filterLinks) {
+            if (selection === link.id) {
+                /* every time a new link is clicked, the code make sure than no other links get the style*/
+                for (const link2 of filterLinks) {
+                    if (link === link2) {
+                        link.className = "selected-link";
+                    }
+                    else {
+                        link2.className = "";
+                    }
+                }
+            }
+        }
+    }
+
+    window.onhashchange = DisplayByHash;
 
 
 })()
